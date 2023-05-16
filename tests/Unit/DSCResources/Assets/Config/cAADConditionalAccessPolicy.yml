@@ -1,5 +1,6 @@
 Items:
-  - BuiltInControls:
+  - Id: bf8908a2-6e1d-4bf0-a639-f25a1e642ebd
+    BuiltInControls:
       - Mfa
       - CompliantDevice
       - DomainJoinedDevice
@@ -18,9 +19,6 @@ Items:
       - 00000012-0000-0000-c000-000000000000
       - 00000007-0000-0000-c000-000000000000
       - Office365
-    ExcludeDevices:
-      - Compliant
-      - DomainJoined
     ExcludeLocations:
       - Blocked Countries
     ExcludePlatforms:
@@ -42,8 +40,6 @@ Items:
       - GuestsOrExternalUsers
     GrantControlOperator: OR
     IncludeApplications:
-      - All
-    IncludeDevices:
       - All
     IncludeLocations:
       - AllTrusted
