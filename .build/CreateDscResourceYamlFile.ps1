@@ -1,6 +1,12 @@
 task Create_DSC_Resource_Yaml_File {
     if (-not $dscResources) {
-        $dscResources = Get-DscResource -Module Microsoft365DSC | Where-Object Name -like 'AAD*' | Select-Object -First 2
+        $dscResources = @()
+        $dscResources += Get-DscResource -Module Microsoft365DSC | Where-Object Name -like 'AAD*' | Select-Object -First 2
+        $dscResources += Get-DscResource -Module Microsoft365DSC -Name AADTenantDetails
+        $dscResources += Get-DscResource -Module Microsoft365DSC -Name AADConditionalAccessPolicy
+        $dscResources += Get-DscResource -Module Microsoft365DSC -Name AADNamedLocationPolicy
+        $dscResources += Get-DscResource -Module Microsoft365DSC -Name AADGroupsSettings
+        $dscResources += Get-DscResource -Module Microsoft365DSC -Name EXOTransportConfig
     }
     $scalar = $dscResources | Where-Object { $_.Properties.Name -contains 'IsSingleInstance' }
     $array = $dscResources | Where-Object { $_.Properties.Name -notcontains 'IsSingleInstance' }

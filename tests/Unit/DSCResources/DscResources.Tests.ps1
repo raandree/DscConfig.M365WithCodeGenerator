@@ -40,6 +40,10 @@ BeforeDiscovery {
 
 Describe 'DSC Composite Resources compile' -Tags FunctionalQuality {
 
+    It "'<DscResourceName>' has test data yml file" -Skip -TestCases $testCases {
+        TODO: To be implemented
+    }
+
     It "'<DscResourceName>' compiles" -TestCases $testCases {
 
         if ($Skip)
