@@ -175,7 +175,7 @@ stages:
     dependsOn: Test
     # Only execute deploy stage if we're on master and previous stage succeeded
     condition: |
-      condition: "false"
+      false
     #and(
     #  succeeded(),
     #  or(
