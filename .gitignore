@@ -1,4 +1,6 @@
 output/
+source/DSCResources
+source/DSCResources.yml
 
 **.bak
 *.local.*
