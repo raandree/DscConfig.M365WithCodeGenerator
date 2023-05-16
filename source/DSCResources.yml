@@ -1,0 +1,8 @@
+﻿Microsoft365DSC:
+  AADAuthorizationPolicy:
+    CompositeResourceName: cAADAuthorizationPolicy
+    ParameterType: Scalar
+  AADApplication:
+    CompositeResourceName: cAADApplication
+    ParameterType: Array
+
