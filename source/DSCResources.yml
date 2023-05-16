@@ -20,4 +20,10 @@
   AADNamedLocationPolicy:
     CompositeResourceName: cAADNamedLocationPolicy
     ParameterType: Array
+  AADGroup:
+    CompositeResourceName: cAADGroup
+    ParameterType: Array
+  AADRoleSetting:
+    CompositeResourceName: cAADRoleSetting
+    ParameterType: Array
 
