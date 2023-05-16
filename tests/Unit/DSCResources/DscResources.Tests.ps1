@@ -40,8 +40,9 @@ BeforeDiscovery {
 
 Describe 'DSC Composite Resources compile' -Tags FunctionalQuality {
 
-    It "'<DscResourceName>' has test data yml file" -Skip -TestCases $testCases {
-        TODO: To be implemented
+    It "'<DscResourceName>' has test data yml file" -TestCases $testCases {
+        $here = $PSScriptRoot
+        Test-Path -Path "$here\Assets\Config\$DscResourceName.yml" | Should -Be $true
     }
 
     It "'<DscResourceName>' compiles" -TestCases $testCases {
