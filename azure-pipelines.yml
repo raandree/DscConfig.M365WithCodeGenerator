@@ -175,13 +175,14 @@ stages:
     dependsOn: Test
     # Only execute deploy stage if we're on master and previous stage succeeded
     condition: |
-      and(
-        succeeded(),
-        or(
-          eq(variables['Build.SourceBranch'], 'refs/heads/main'),
-          startsWith(variables['Build.SourceBranch'], 'refs/tags/')
-        )
-      )
+      condition: "false"
+      #and(
+      #  succeeded(),
+      #  or(
+      #    eq(variables['Build.SourceBranch'], 'refs/heads/main'),
+      #    startsWith(variables['Build.SourceBranch'], 'refs/tags/')
+      #  )
+      #)
     jobs:
       - job: Deploy_Module
         displayName: 'Deploy Module'
