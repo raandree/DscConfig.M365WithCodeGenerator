@@ -7,6 +7,8 @@ task Create_DSC_Resource_Yaml_File {
         $dscResources += Get-DscResource -Module Microsoft365DSC -Name AADNamedLocationPolicy
         $dscResources += Get-DscResource -Module Microsoft365DSC -Name AADGroupsSettings
         $dscResources += Get-DscResource -Module Microsoft365DSC -Name EXOTransportConfig
+        $dscResources += Get-DscResource -Module Microsoft365DSC -Name AADGroup
+        $dscResources += Get-DscResource -Module Microsoft365DSC -Name AADRoleSetting
     }
     $scalar = $dscResources | Where-Object { $_.Properties.Name -contains 'IsSingleInstance' }
     $array = $dscResources | Where-Object { $_.Properties.Name -notcontains 'IsSingleInstance' }
