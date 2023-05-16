@@ -1,14 +1,24 @@
 task Create_DSC_Resource_Yaml_File {
     if (-not $dscResources) {
-        $dscResources = @()
-        $dscResources += Get-DscResource -Module Microsoft365DSC | Where-Object Name -like 'AAD*' | Select-Object -First 2
-        $dscResources += Get-DscResource -Module Microsoft365DSC -Name AADTenantDetails
-        $dscResources += Get-DscResource -Module Microsoft365DSC -Name AADConditionalAccessPolicy
-        $dscResources += Get-DscResource -Module Microsoft365DSC -Name AADNamedLocationPolicy
-        $dscResources += Get-DscResource -Module Microsoft365DSC -Name AADGroupsSettings
-        $dscResources += Get-DscResource -Module Microsoft365DSC -Name EXOTransportConfig
-        $dscResources += Get-DscResource -Module Microsoft365DSC -Name AADGroup
-        $dscResources += Get-DscResource -Module Microsoft365DSC -Name AADRoleSetting
+        
+        $dscResources = 'AADTenantDetails',
+        'AADConditionalAccessPolicy',
+        'AADNamedLocationPolicy',
+        'AADGroupsSettings',
+        'EXOTransportConfig',
+        'AADGroup',
+        'AADRoleSetting',
+        'AADSecurityDefaults',
+        'AADAuthorizationPolicy',
+        'AADApplication',
+        'AADGroupLifecyclePolicy',
+        'AADGroupsNamingPolicy',
+        'AADTokenLifetimePolicy',
+        'AADRoleDefinition',
+        'AADServicePrincipal'
+
+        $dscResources = Get-DscResource -Module Microsoft365DSC | Where-Object Name -in $dscResources
+        
     }
     $scalar = $dscResources | Where-Object { $_.Properties.Name -contains 'IsSingleInstance' }
     $array = $dscResources | Where-Object { $_.Properties.Name -notcontains 'IsSingleInstance' }
