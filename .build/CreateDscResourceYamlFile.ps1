@@ -1,6 +1,7 @@
 task Create_DSC_Resource_Yaml_File {
+
     if (-not $dscResources) {
-        
+
         $dscResources = 'AADTenantDetails',
         'AADConditionalAccessPolicy',
         'AADNamedLocationPolicy',
@@ -17,16 +18,16 @@ task Create_DSC_Resource_Yaml_File {
         'AADRoleDefinition',
         'AADServicePrincipal'
 
-        $dscResources = Get-DscResource -Module Microsoft365DSC | Where-Object Name -in $dscResources
-        
+        $dscResources = Get-DscResource -Module Microsoft365DSC | Where-Object Name -In $dscResources
+
     }
     $scalar = $dscResources | Where-Object { $_.Properties.Name -contains 'IsSingleInstance' }
     $array = $dscResources | Where-Object { $_.Properties.Name -notcontains 'IsSingleInstance' }
-    
+
     $content = @{
         Microsoft365DSC = [ordered]@{}
     }
-    
+
     foreach ($item in $scalar) {
         $compositeName = "c$($item.Name)" #Get-Name -Name $item.Name
         $content.Microsoft365DSC.Add($item.Name, @{
@@ -41,7 +42,10 @@ task Create_DSC_Resource_Yaml_File {
                 ParameterType         = 'Array'
             })
     }
-    
+
     #$content.Microsoft365DSC | ft -Property Name, @{ Label = 'CompositeName'; Expression = { $_.Value.ParameterType } }
-    $content | ConvertTo-Yaml | Out-File -FilePath $sourcePath\DSCResources.yml -Encoding utf8
+
+    $utf8NoBomEncoding = [System.Text.UTF8Encoding]::new($false)
+    [System.IO.File]::WriteAllLines("$sourcePath\DSCResources.yml", ($content | ConvertTo-Yaml), $utf8NoBomEncoding)
+
 }

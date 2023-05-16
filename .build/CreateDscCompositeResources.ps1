@@ -209,14 +209,16 @@ task Create_Dsc_Composite_Resources {
                 CompositeResourceName = $dscResource.Value.CompositeResourceName
                 ParameterType         = $dscResource.Value.ParameterType
             }
+
+            $utf8NoBomEncoding = [System.Text.UTF8Encoding]::new($false)
         
             Write-Build DarkGray "Generating code DSC Composite Resource '$($dscResource.Value.CompositeResourceName)' for DSC Resource '$($dscResource.Name)'."
             $compositeResourceCode = New-DscCompositeResourceCode @param
             mkdir -Path "$SourcePath\DSCResources\$($param.CompositeResourceName)" -Force | Out-Null
-            $compositeResourceCode | Out-File -FilePath "$SourcePath\DSCResources\$($param.CompositeResourceName)\$($param.CompositeResourceName).schema.psm1" -Encoding UTF8 -Force
+            [System.IO.File]::WriteAllLines("$SourcePath\DSCResources\$($param.CompositeResourceName)\$($param.CompositeResourceName).schema.psm1", $compositeResourceCode, $utf8NoBomEncoding)
 
             $compositeResourcePsd1Code = New-DscCompositeResourcePsd1Code -CompositeResourceName $dscResource.Value.CompositeResourceName -CompositeResourceModuleName $ProjectName
-            $compositeResourcePsd1Code | Out-File -FilePath "$SourcePath\DSCResources\$($param.CompositeResourceName)\$($param.CompositeResourceName).psd1" -Encoding UTF8 -Force
+            [System.IO.File]::WriteAllLines("$SourcePath\DSCResources\$($param.CompositeResourceName)\$($param.CompositeResourceName).psd1", $compositeResourcePsd1Code, $utf8NoBomEncoding)
         }
 
     }
