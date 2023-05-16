@@ -29,8 +29,8 @@ function ConvertTo-PowerShellType {
         'SInt64' { return 'long' }
         'String' { return 'string' }
         'StringArray' { return 'string[]' }
-        'UInt16' { return '[System.UInt16]' }
-        'UInt32' { return '[System.UInt32]' }
+        'UInt16' { return 'System.UInt16' }
+        'UInt32' { return 'System.UInt32' }
         
         default { return $TypeName }
     }
