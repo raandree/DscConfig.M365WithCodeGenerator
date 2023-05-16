@@ -176,13 +176,13 @@ stages:
     # Only execute deploy stage if we're on master and previous stage succeeded
     condition: |
       condition: "false"
-      #and(
-      #  succeeded(),
-      #  or(
-      #    eq(variables['Build.SourceBranch'], 'refs/heads/main'),
-      #    startsWith(variables['Build.SourceBranch'], 'refs/tags/')
-      #  )
-      #)
+    #and(
+    #  succeeded(),
+    #  or(
+    #    eq(variables['Build.SourceBranch'], 'refs/heads/main'),
+    #    startsWith(variables['Build.SourceBranch'], 'refs/tags/')
+    #  )
+    #)
     jobs:
       - job: Deploy_Module
         displayName: 'Deploy Module'
