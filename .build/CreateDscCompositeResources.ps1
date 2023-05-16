@@ -152,7 +152,7 @@ function New-DscCompositeResourceCode {
     [void]$code.AppendLine('')
 
     $dscParameterKeys = $dscParameters.Where({ $_.IsKey })
-    [void]$code.AppendLine('    $dscParameterKeys = ''{0}''' -f ($dscParameterKeys.Name -join ', '))
+    [void]$code.AppendLine('    $dscParameterKeys = ''{0}'' -split '', ''' -f ($dscParameterKeys.Name -join ', '))
     [void]$code.AppendLine('')
 
     if ($ParameterType -eq 'Scalar') {
