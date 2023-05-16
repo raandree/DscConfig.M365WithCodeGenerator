@@ -40,6 +40,7 @@ BuildWorkflow:
 
   build:
     - Clean
+    - Clean_Sources_Folder
     - Create_DSC_Resource_Yaml_File
     - Create_Dsc_Composite_Resources
     - Build_Module_ModuleBuilder
